@@ -183,6 +183,8 @@ jobs:
         target: "kittygram"
     - name: Executing remote ssh commands to deploy
       uses: appleboy/ssh-action@master
+      env:
+        SECRET_KEY: ${{ secrets.SECRET_KEY }}
       with:
         host: ${{ secrets.HOST }}
         username: ${{ secrets.USER }}
