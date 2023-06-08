@@ -194,10 +194,6 @@ jobs:
         # которые нужно выполнить на сервере, 
         # с которым установлено соединение
         script: |
-          cd kittygram
-          sudo docker system prune -a
-          sudo npm cache clean --force
-          sudo apt-get clean
           # Выполняет pull образов с Docker Hub
           sudo docker compose -f docker-compose.production.yml pull
           # Перезапускает все контейнеры в Docker Compose
