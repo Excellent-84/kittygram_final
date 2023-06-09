@@ -1,91 +1,65 @@
-# Проект контейнеры и CI/CD для Kittygram.
+## Проект контейнеры и CI/CD для Kittygram.
 
-## Описание проекта: 
+### Описание проекта: 
 
 Настройка запуска проекта Kittygram в контейнерах;
 Настройка автоматического тестирования и деплоя этого проекта на удалённый сервер.
 
-## Стек технологий:
+### Стек технологий:
 
 * #### Django REST
 * #### Python 3.9
-* #### Gunicorn
+* #### Docker
 * #### Nginx
+* #### PostgreSQL
+* #### GitHub Actions
 * #### JS
 * #### Node.js
-* #### PostgreSQL
-* #### Docker
 
-## Как запустить проект: 
 
-#### Клонировать репозиторий: 
+### Как запустить проект: 
 
+##### Клонировать репозиторий: 
 ``` 
 git clone https://github.com/Excellent-84/kittygram_final.git
-
 ```
-
-#### Настроить Docker:
- 
+##### Настроить Docker:
 ``` 
 sudo apt update
 sudo apt install curl
 curl -fSL https://get.docker.com -o get-docker.sh
 sudo sh ./get-docker.sh
 sudo apt-get install docker-compose-plugin
-
 ```
-
-#### Создать файл .env и указать переменные по примеру .env.example:
-
+##### Создать файл .env и указать переменные по примеру .env.example:
 ``` 
 cd kittygram_final
 sudo nano .env
-
 ```
-
-#### Загрузить образы контейнеров из DockerHub:
-
+##### Загрузить образы контейнеров из DockerHub:
 ```
 sudo docker compose -f docker-compose.production.yml pull
-
 ```
-
-#### Остановить и удалить все контейнеры:
-
+##### Остановить и удалить все контейнеры:
 ```
 sudo docker compose -f docker-compose.production.yml down
-
 ```
-
-#### Запустить все контейнеры в фоновом режиме: 
-
+##### Запустить все контейнеры в фоновом режиме: 
 ```
 sudo docker compose -f docker-compose.production.yml up -d
-
 ```
-
-#### Выполнить миграции: 
-
+##### Выполнить миграции: 
 ``` 
 sudo docker compose -f docker-compose.production.yml exec backend python manage.py migrate 
-
 ```
-
-#### Собрать статику и копировать ее в директорию static:
-
+##### Собрать статику и копировать ее в директорию static:
 ``` 
 sudo docker compose -f docker-compose.production.yml exec backend python manage.py collectstatic
 sudo docker compose -f docker-compose.production.yml exec backend cp -r /app/collect_static/. /static/static/
-
 ```
-
-#### Создать суперпользователя (указывать логин, e-mail, пароль):
-
+##### Создать суперпользователя (указывать логин, e-mail, пароль):
 ``` 
 sudo docker compose -f docker-compose.production.yml exec backend python manage.py createsuperuser 
-
 ```
 
-
-### Автор [Excellent-84](https://github.com/Excellent-84)
+#### Автор [Excellent-84](https://github.com/Excellent-84)
