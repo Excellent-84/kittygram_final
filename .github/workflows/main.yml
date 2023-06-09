@@ -192,6 +192,10 @@ jobs:
         # которые нужно выполнить на сервере, 
         # с которым установлено соединение
         script: |
+          cd kittygram
+          sudo docker system prune -a
+          sudo npm cache clean --force
+          sudo apt-get clean
           sudo docker compose -f docker-compose.production.yml pull
           sudo docker compose -f docker-compose.production.yml down
           sudo docker compose -f docker-compose.production.yml up -d
