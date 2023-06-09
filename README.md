@@ -1,26 +1,91 @@
-#  Как работать с репозиторием финального задания
+# Проект контейнеры и CI/CD для Kittygram.
 
-## Что нужно сделать
+## Описание проекта: 
 
-Настроить запуск проекта Kittygram в контейнерах и CI/CD с помощью GitHub Actions
+Настройка запуска проекта Kittygram в контейнерах;
+Настройка автоматического тестирования и деплоя этого проекта на удалённый сервер.
 
-## Как проверить работу с помощью автотестов
+## Стек технологий:
 
-В корне репозитория создайте файл tests.yml со следующим содержимым:
-```yaml
-repo_owner: ваш_логин_на_гитхабе
-kittygram_domain: полная ссылка (https://доменное_имя) на ваш проект Kittygram
-taski_domain: полная ссылка (https://доменное_имя) на ваш проект Taski
-dockerhub_username: ваш_логин_на_докерхабе
+* #### Django REST
+* #### Python 3.9
+* #### Gunicorn
+* #### Nginx
+* #### JS
+* #### Node.js
+* #### PostgreSQL
+* #### Docker
+
+## Как запустить проект: 
+
+#### Клонировать репозиторий: 
+
+``` 
+git clone https://github.com/Excellent-84/kittygram_final.git
+
 ```
 
-Скопируйте содержимое файла `.github/workflows/main.yml` в файл `kittygram_workflow.yml` в корневой директории проекта.
+#### Настроить Docker:
+ 
+``` 
+sudo apt update
+sudo apt install curl
+curl -fSL https://get.docker.com -o get-docker.sh
+sudo sh ./get-docker.sh
+sudo apt-get install docker-compose-plugin
 
-Для локального запуска тестов создайте виртуальное окружение, установите в него зависимости из backend/requirements.txt и запустите в корневой директории проекта `pytest`.
+```
 
-## Чек-лист для проверки перед отправкой задания
+#### Создать файл .env и указать переменные по примеру .env.example:
 
-- Проект Taski доступен по доменному имени, указанному в `tests.yml`.
-- Проект Kittygram доступен по доменному имени, указанному в `tests.yml`.
-- Пуш в ветку main запускает тестирование и деплой Kittygram, а после успешного деплоя вам приходит сообщение в телеграм.
-- В корне проекта есть файл `kittygram_workflow.yml`.
+``` 
+cd kittygram_final
+sudo nano .env
+
+```
+
+#### Загрузить образы контейнеров из DockerHub:
+
+```
+sudo docker compose -f docker-compose.production.yml pull
+
+```
+
+#### Остановить и удалить все контейнеры:
+
+```
+sudo docker compose -f docker-compose.production.yml down
+
+```
+
+#### Запустить все контейнеры в фоновом режиме: 
+
+```
+sudo docker compose -f docker-compose.production.yml up -d
+
+```
+
+#### Выполнить миграции: 
+
+``` 
+sudo docker compose -f docker-compose.production.yml exec backend python manage.py migrate 
+
+```
+
+#### Собрать статику и копировать ее в директорию static:
+
+``` 
+sudo docker compose -f docker-compose.production.yml exec backend python manage.py collectstatic
+sudo docker compose -f docker-compose.production.yml exec backend cp -r /app/collect_static/. /static/static/
+
+```
+
+#### Создать суперпользователя (указывать логин, e-mail, пароль):
+
+``` 
+sudo docker compose -f docker-compose.production.yml exec backend python manage.py createsuperuser 
+
+```
+
+
+### Автор [Excellent-84](https://github.com/Excellent-84)
