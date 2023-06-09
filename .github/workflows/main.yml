@@ -47,7 +47,7 @@ jobs:
         # Поэтому подключаемся к 127.0.0.1:5432
         DB_HOST: 127.0.0.1
         DB_PORT: 5432
-        SECRET_KEY: django-insecure-cg6*%6d51ef8f#4!r3*$vmxm4)abgjw8mo!4y-q*uq1!4$-89$
+        SECRET_KEY: test-cg6*%6d51ef8f#4!r3*$vmxm4)abgjw8mo!4y-q*uq1!4$-89$
         ALLOWED_HOSTS: 158.160.64.77,127.0.0.1,localhost,kgram.sytes.net
       run: |
         python -m flake8 backend/
@@ -178,14 +178,12 @@ jobs:
         host: ${{ secrets.HOST }}
         username: ${{ secrets.USER }}
         key: ${{ secrets.SSH_KEY }}
-        key_path: ${{ secrets.SECRET_KEY }}
         passphrase: ${{ secrets.SSH_PASSPHRASE }}
         source: "docker-compose.production.yml"
         target: "kittygram"
     - name: Executing remote ssh commands to deploy
       uses: appleboy/ssh-action@master
       with:
-        key_path: ${{ secrets.SECRET_KEY }}
         host: ${{ secrets.HOST }}
         username: ${{ secrets.USER }}
         key: ${{ secrets.SSH_KEY }}
@@ -194,10 +192,6 @@ jobs:
         # которые нужно выполнить на сервере, 
         # с которым установлено соединение
         script: |
-          cd kittygram
-          sudo docker system prune -a
-          sudo npm cache clean --force
-          sudo apt-get clean
           sudo docker compose -f docker-compose.production.yml pull
           sudo docker compose -f docker-compose.production.yml down
           sudo docker compose -f docker-compose.production.yml up -d
