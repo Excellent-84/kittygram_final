@@ -51,10 +51,9 @@ sudo docker compose -f docker-compose.production.yml up -d
 ``` 
 sudo docker compose -f docker-compose.production.yml exec backend python manage.py migrate 
 ```
-##### Собрать статику и копировать ее в директорию static:
+##### Собрать статику:
 ``` 
 sudo docker compose -f docker-compose.production.yml exec backend python manage.py collectstatic
-sudo docker compose -f docker-compose.production.yml exec backend cp -r /app/collect_static/. /static/static/
 ```
 ##### Создать суперпользователя (указать логин, e-mail, пароль):
 ``` 

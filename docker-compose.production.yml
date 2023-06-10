@@ -25,6 +25,7 @@ services:
   gateway:
     image: excellent84/kittygram_gateway
     volumes:
+      - ./config/nginx/conf.d:/etc/nginx/conf.d
       - static_volume:/static
       - media_volume:/media
     ports:
