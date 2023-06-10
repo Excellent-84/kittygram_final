@@ -4,7 +4,7 @@ volumes:
   pg_data_production:
   static_volume:
   media_volume:
-  ./config/nginx/conf.d:
+  nginx_config_volume:
 
 services:
   db:
@@ -26,7 +26,7 @@ services:
   gateway:
     image: nginx:1.22.1
     volumes:
-      - ./config/nginx/conf.d:/etc/nginx/conf.d
+      - nginx_config_volume:/etc/nginx/conf.d
       - static_volume:/static
       - media_volume:/media
     ports:
