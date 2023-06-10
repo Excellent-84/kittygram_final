@@ -27,6 +27,6 @@ services:
     ports:
       - 9000:80
     volumes:
-      - ./config/nginx/nginx.conf:/etc/nginx/templates/default.conf.template
+      - ./config/nginx/conf.d:/etc/nginx/conf.d
       - static:/static
       - media:/media
