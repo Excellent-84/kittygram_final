@@ -54,7 +54,6 @@ jobs:
         python manage.py test
 
   # .github/workflows/main.yml
-
   # Тут задачи тестирования и сборки образа
   # ...
   # Добавляем новую задачу: деплой приложения
@@ -192,15 +191,15 @@ jobs:
         # с которым установлено соединение
         script: |
           cd kittygram
-          sudo docker system prune -a
-          sudo npm cache clean --force
-          sudo apt-get clean
           sudo docker compose -f docker-compose.production.yml pull
           sudo docker compose -f docker-compose.production.yml down
           sudo docker compose -f docker-compose.production.yml up -d
           sudo docker compose -f docker-compose.production.yml exec backend python manage.py migrate
           sudo docker compose -f docker-compose.production.yml exec backend python manage.py collectstatic
           sudo docker compose -f docker-compose.production.yml exec backend cp -r /app/collected_static/. /static/static/
+          sudo docker system prune -a
+          sudo npm cache clean --force
+          sudo apt-get clean
 
   send_message:
     runs-on: ubuntu-latest
