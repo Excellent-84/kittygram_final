@@ -27,6 +27,7 @@ services:
     image: nginx:1.22.1
     volumes:
       - nginx_config_volume:/etc/nginx/conf.d
+      - nginx_config_volume:/etc/nginx/templates/default.conf.template
       - static_volume:/static
       - media_volume:/media
     ports:
