@@ -23,10 +23,11 @@ services:
     volumes:
       - static:/static
   gateway:
-    build: ./nginx/
+    image: nginx:1.22.1
     ports:
       - 9000:80
     volumes:
       - ./config/nginx/conf.d:/etc/nginx/conf.d
+      - ./config/nginx/nginx.conf:/etc/nginx/templates/default.conf.template
       - static:/static
       - media:/media
