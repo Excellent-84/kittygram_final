@@ -36,6 +36,36 @@ sudo apt-get install docker-compose-plugin
 cd kittygram_final
 sudo nano .env
 ```
+##### Устанавливаем и запускаем Nginx:
+```
+sudo apt install nginx -y
+sudo systemctl start nginx
+```
+##### Настраиваем и включаем firewall:
+```
+sudo ufw allow 'Nginx Full'
+sudo ufw allow OpenSSH
+sudo ufw enable
+```
+##### Открываем конфигурационный файл Nginx и меняем настройки:
+```
+sudo nano /etc/nginx/sites-enabled/default
+server {
+    listen 80;
+    server_name your_domain_name.com;
+    
+    location / {
+        proxy_set_header HOST $host;
+        proxy_pass http://127.0.0.1:9000;
+
+    }
+}
+##### Проверяем корректность настроек и перезапускаем Nginx:
+```
+sudo nginx -t
+sudo systemctl start nginx
+```
+```
 ##### Загрузить образы из DockerHub:
 ```
 sudo docker compose -f docker-compose.production.yml pull
