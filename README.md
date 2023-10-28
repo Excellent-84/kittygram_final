@@ -2,6 +2,7 @@
 
 ### Описание проекта: 
 
+Програмный интерфейс для социальной сети Kittygram, по средствам которого пользователи могут публиковать фотографии своих питомцев, выбирать их цвет, указывать их имена и достижения, а так же редактировать и удалять их. Также можно просматривать контент других пользователей. Для создания своего контента и просмотра контента других пользователей необходимо пройти аутентификацию и авторизацию.
 Настройка запуска проекта Kittygram в контейнерах.  
 Настройка автоматического тестирования и деплоя проекта на удалённый сервер.
 
@@ -9,13 +10,13 @@
 ### Стек технологий:
 
 * ##### Python
-* ##### Django REST
-* ##### Docker
+* ##### Django
+* ##### Django REST Framework
 * ##### Nginx
 * ##### PostgreSQL
 * ##### GitHub Actions
-* ##### JS
-* ##### Node.js
+* ##### CI/CD
+* ##### Docker
 
 ### Как запустить проект: 
 
@@ -91,4 +92,4 @@ sudo docker compose -f docker-compose.production.yml exec backend python manage.
 sudo docker compose -f docker-compose.production.yml exec backend python manage.py createsuperuser 
 ```
 
-#### Автор [Excellent-84](https://github.com/Excellent-84)
+#### Автор [Горин Евгений](https://github.com/Excellent-84)
