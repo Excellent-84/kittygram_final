@@ -84,4 +84,4 @@ sudo docker compose -f docker-compose.production.yml exec backend python manage.
 sudo docker compose -f docker-compose.production.yml exec backend python manage.py createsuperuser 
 ```
 
-#### Автор [Горин Евгений](https://github.com/Excellent-84)
+#### Автор: [Горин Евгений](https://github.com/Excellent-84)
