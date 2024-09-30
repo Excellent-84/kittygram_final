@@ -48,5 +48,5 @@ sqlparse==0.5.0
 toml==0.10.2
 typing_extensions==4.6.3
 uritemplate==4.1.1
-urllib3==2.0.3
+urllib3==2.2.2
 webcolors==1.11.1
